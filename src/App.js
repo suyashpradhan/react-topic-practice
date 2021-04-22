@@ -1,22 +1,31 @@
-import { Route, Routes } from "react-router";
-import { Navbar } from "./Components/Navbar";
-import { Home } from "./Components/Home";
-import { Categories } from "./Components/Categories";
-import { ProductDetails } from "./Components/ProductDetails";
-import { ErrorPage } from "./Components/ErrorPage";
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { Home } from "./Router/Home";
+import { Categories } from "./Router/Categories";
+import { Cart } from "./Router/Cart";
+import { ProductDetails } from "./Router/ProductDetail";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Navbar />
+    <div>
+      <Link to="/" style={{ marginRight: "1rem" }}>
+        Home
+      </Link>
+      <Link to="/categories" style={{ marginRight: "1rem" }}>
+        Categories
+      </Link>
+      <Link to="/cart">Cart</Link>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:productId" element={<ProductDetails />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/categories" element={<Categories />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route
+          path="/product-details/:productId"
+          element={<ProductDetails />}
+        ></Route>
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
